@@ -1,0 +1,10 @@
+Source: eth-mqtt-energenie-bridge
+Package: eth-mqtt-energenie-bridge
+Section: network
+Priority: optional
+Architecture: armhf
+Build-Depends:
+Depends: python3 (>= 3.7.0), python3-gpiozero, python3-paho-mqtt
+Essential: no
+Maintainer: Eth Morgan <eth@ethulhu.co.uk>
+Description: Control Energenie sockets using MQTT.

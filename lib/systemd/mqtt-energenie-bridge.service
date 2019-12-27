@@ -1,0 +1,10 @@
+[Unit]
+Description=Control Energenie sockets using MQTT.
+
+[Service]
+DynamicUser=yes
+SupplementaryGroups=gpio
+ExecStart=/usr/bin/mqtt-energenie-bridge --config /etc/mqtt-energenie-bridge/config.json
+
+[Install]
+WantedBy=multi-user.target
