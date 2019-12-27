@@ -1,5 +1,7 @@
 [Unit]
-Description=Control Energenie sockets using MQTT.
+Description=Control Energenie sockets using MQTT
+Wants=network.target
+After=network.target
 
 [Service]
 DynamicUser=yes
