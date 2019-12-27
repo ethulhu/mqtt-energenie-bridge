@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MQTT to Energenie bridge."""
+"""Control Energenie switches using MQTT."""
 import argparse
 import dataclasses
 import json
