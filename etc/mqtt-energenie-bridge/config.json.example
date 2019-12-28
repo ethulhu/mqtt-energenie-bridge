@@ -1,0 +1,20 @@
+{
+	"broker_host": "your-machine.local",
+	"broker_port": 1883,
+	"switches": [
+		{
+			"name": "Lamp",
+			"switch": 1,
+			"topic": "home/lamp/power",
+			"payload_on": "on",
+			"payload_off": "off"
+		},
+		{
+			"name": "TV",
+			"switch": 2,
+			"topic": "home/tv/is_on",
+			"payload_on": "true",
+			"payload_off": "false"
+		}
+	]
+}
