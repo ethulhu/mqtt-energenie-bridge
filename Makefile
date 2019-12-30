@@ -7,7 +7,7 @@ test: build
 	@true
 
 manifest: test
-	find lib usr > $@
+	find etc lib usr > $@
 
 deb: manifest
 	bpkg-build . $(VERSION)
