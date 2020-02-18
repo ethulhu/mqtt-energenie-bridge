@@ -36,12 +36,18 @@ class Config:
         return cls(**d)
 
 
-def on_connect(client, userdata, flags, return_code):
-    print(f'connected')
+def on_connect(switches):
+    def callback(client, userdata, flags, return_code):
+        print('connected')
+        for switch in switches:
+            client.subscribe(switch.topic)
+            client.message_callback_add(switch.topic, on_message(
+                switch.name, switch.switch, switch.payload_on, switch.payload_off))
+    return callback
 
 
 def on_disconnect(client, userdata, flags, return_code):
-    print(f'disconnected')
+    print('disconnected')
 
 
 def on_message(name: str, switch: int, payload_on: str, payload_off: str) -> Callable:
@@ -69,11 +75,7 @@ if __name__ == '__main__':
     config = Config.from_dict(json.load(args.config))
 
     client = mqtt.Client()
-    client.on_connect = on_connect
+    client.on_connect = on_connect(config.switches)
     client.on_disconnect = on_disconnect
     client.connect(config.broker_host, config.broker_port)
-    for switch in config.switches:
-        client.subscribe(switch.topic)
-        client.message_callback_add(switch.topic, on_message(
-            switch.name, switch.switch, switch.payload_on, switch.payload_off))
     client.loop_forever()
